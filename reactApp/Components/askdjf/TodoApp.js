@@ -4,8 +4,11 @@ import ReactDOM from 'react-dom';
 import InputLine from './InputLine';
 import TodoList from './TodoList';
 
-let dummyData = [{taskText: 'Take out the trash', completed: false},
-{taskText: 'Walk the dog', completed: false}, {taskText: 'Clean the room', completed: true}];
+let dummyData = [
+  {taskText: 'Take out the trash', completed: false, dueDate: "march 1", for: "Aud", event: "general"},
+  {taskText: 'Walk the dog', completed: false, dueDate: "march 10", for: "Tim", event: "Culture Show"},
+  {taskText: 'Clean the room', completed: true, dueDate: "march 17", for: "Timmy", event: "Movie Night"}
+];
 
 class TodoApp extends React.Component {
   constructor(props) {
@@ -14,9 +17,7 @@ class TodoApp extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({
-      todos: dummyData
-    });
+    this.setState({ todos: dummyData });
   }
 
   addTodo(todo) {

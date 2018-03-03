@@ -1,28 +1,47 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Modal from 'react-modal';
 
+//modifying so that input line triggers a modal
 class InputLine extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      inputText: "",
-    }
+      showModal: false,
+    };
+    this.handleOpenModal = this.handleOpenModal.bind(this);
+    this.handleCloseModal = this.handleCloseModal.bind(this);
   }
-  handleChange(e) {
-    e.preventDefault();
-    this.setState({inputText: e.target.value})
+
+  handleOpenModal () {
+    this.setState({ showModal: true });
   }
+
+  handleCloseModal () {
+    this.setState({ showModal: false });
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     this.props.submit(this.state.inputText);
     this.setState({inputText: ""});
   }
+
   render() {
     return(
-      <form className="form">
-        <input type="text" value={this.state.inputText} onChange={(e) => this.handleChange(e)} placeholder="Input task here"></input>
-        <input type="submit" onClick={(e) => this.handleSubmit(e)} value="Add todo"></input>
-      </form>
+      <div>
+        <button onClick={this.handleOpenModal}>Trigger Modal</button>
+       <Modal
+         isOpen={this.state.showModal}
+         contentLabel="onRequestClose Example"
+         onRequestClose={this.handleCloseModal}
+         shouldCloseOnOverlayClick={false}
+         >
+           <p> more modal stuff </p>
+           <button onClick={this.handleCloseModal}>Close Modal</button>
+
+      </Modal>
+      </div>
     )
   }
 }
