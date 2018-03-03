@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
 
+import TodoModal from "./TodoModal";
+
 //modifying so that input line triggers a modal
 class InputLine extends React.Component {
   constructor(props) {
@@ -37,7 +39,7 @@ class InputLine extends React.Component {
          onRequestClose={this.handleCloseModal}
          shouldCloseOnOverlayClick={false}
          >
-           <p> more modal stuff </p>
+           <TodoModal submit={(a) => this.props.submit(a)}/>
            <button onClick={this.handleCloseModal}>Close Modal</button>
 
       </Modal>

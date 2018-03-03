@@ -14,25 +14,31 @@ class TodoApp extends React.Component {
     }
     // this.addTodo = this.addTodo.bind(this);
   }
+
   componentDidMount() {
     this.setState({todos: dummyData})
   }
+
   addTodo(todo) {
-    dummyData.push({taskText: todo, completed: false})
+    console.log(todo);
+    dummyData.push({taskText: todo.inputText, completed: false})
     this.setState({todos: dummyData});
   }
+
   removeTodo(index) {
     console.log("remove", index)
     var newArr = this.state.todos.slice();
     newArr.splice(index, 1);
     this.setState({todos: newArr});
   }
+
   toggle(index) {
     console.log("toggle", index)
     var newArr = this.state.todos.slice();
     newArr[index].completed = !newArr[index].completed;
     this.setState({todos: newArr});
   }
+  
   render() {
     return(
       <div>
